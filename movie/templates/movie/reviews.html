@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Reviews</h2>
+<ul>
+    {% for r in review_list %}
+    <li>{{ r.title }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
