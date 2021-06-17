@@ -41,8 +41,3 @@ class ReviewTest(TestCase):
 
     def test_tablename(self):
         self.assertEqual(str(Review._meta.db_table), 'review')        
-
-
-    #title=models.CharField(max_length=255)
-    #reviewdate=models.DateField()
-    #reviewtext=models.TextField()
