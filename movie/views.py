@@ -13,3 +13,11 @@ def reviews(request):
     review_list=Review.objects.all()
     return render(request, 'movie/reviews.html', {'review_list': review_list})
 
+def films(request):
+    film_list=Film.objects.all()
+    return render(request, 'movie/films.html', {'film_list': film_list})
+
+def filmDetail(request, id):
+    film=get_object_or_404(Film, pk=id)
+    return render(request, 'movie/filmdetail.html', {'film': film})    
+

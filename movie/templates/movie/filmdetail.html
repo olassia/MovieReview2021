@@ -1,0 +1,11 @@
+{% extends 'base.html'%}
+{% block content %}
+<h2>Film Detail</h2>
+<p>Film Name : {{film.filmname}}<br/>
+    Film Type : {{film.filmtype}}<br/>
+    Film Date: {{film.dateentered}} <br/>
+    Film URL : {{ film.filmurl}} <br/>
+    Film Description : {{ film.description }}
+</p>
+
+{% endblock %}
