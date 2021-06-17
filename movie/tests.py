@@ -69,4 +69,15 @@ class NewReviewForm(TestCase):
             } 
 
         form=ReviewForm (data)
-        self.assertTrue(form.is_valid)                    
+        self.assertTrue(form.is_valid) 
+
+
+class New_Film_Authentication_Test(TestCase):
+    def setUp(self):
+        self.test_user=User.objects.create_user(username='testuser1', password='P@ssw0rd1')
+        self.type=MovieType.objects.create(typename='Horror')
+        self.product=Film.objects.create(filmname='IT',filmtype=self.type, user=self.test_user, dateentered=datetime.date(2021,6,17), filmurl='http://www.IT.com', description="Scary clown movie")
+
+    def test_redirect_if_not_logged_in(self):
+        response=self.client.get(reverse('newfilm'))
+        self.assertRedirects(response, '/accounts/login/?next=/movie/newfilm/')                           
