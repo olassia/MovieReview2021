@@ -1,7 +1,7 @@
-from movie.models import Review
 from django.shortcuts import render, get_object_or_404
 from .models import Film, MovieType, Review
 from django.urls import reverse_lazy
+from .forms import FilmForm, ReviewForm
 
 
 
@@ -19,5 +19,32 @@ def films(request):
 
 def filmDetail(request, id):
     film=get_object_or_404(Film, pk=id)
-    return render(request, 'movie/filmdetail.html', {'film': film})    
+    return render(request, 'movie/filmdetail.html', {'film': film})
 
+def newFilm(request):
+    form=FilmForm
+
+    if request.method=='POST':
+        form=FilmForm(request.POST)
+        if form.is_valid():
+            post=form.save(commit=True)
+            post.save()
+            form=FilmForm()
+
+    else:
+        form=FilmForm()
+        return render(request, 'movie/newfilm.html', {'form': form})
+
+def newReview(request):
+    form=ReviewForm
+
+    if request.method=='POST':
+        form=ReviewForm(request.POST)
+        if form.is_valid():
+            post=form.save(commit=True)
+            post.save()
+            form=ReviewForm()
+
+    else:
+        form=ReviewForm()
+        return render(request, 'movie/newreview.html', {'form': form})
